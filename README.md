@@ -110,9 +110,9 @@ Search Doctor: View all appointments for a specific doctor with patient details
 
 Tips for Best Results:
 
-Add doctors first with their available time slots before adding patients
-Match specialties: Ensure doctors have specialties that match patient needs
-Set realistic time slots: Make sure doctor availability covers the needed appointment durations
-Use urgency levels wisely: Emergency patients will always be scheduled first
-Search functionality: Use search to quickly locate specific patients or doctors
-Review doctor schedules: Use "Search Doctor" in Schedule tab to see individual doctor workloads
+1. Add doctors first with their available time slots before adding patients
+2. Match specialties: Ensure doctors have specialties that match patient needs
+3. Set realistic time slots: Make sure doctor availability covers the needed appointment durations
+4. Use urgency levels wisely: Emergency patients will always be scheduled first
+4. Search functionality: Use search to quickly locate specific patients or doctors
+5. Review doctor schedules: Use "Search Doctor" in Schedule tab to see individual doctor workloads
