@@ -25,11 +25,11 @@ Time Complexity: O(n × m) where n = patients, m = doctors
 Space Complexity: O(n + m + k) where k = appointments
 
 Team Members: 
-Nathan Mikhael Beniga
-Raphael Omar Espina
-King Ruzzel A. Liquin
-John Cameron B. Quiamco
-Zandrah Nathalie L.Vadil
+1. Nathan Mikhael Beniga
+2. Raphael Omar Espina
+3. King Ruzzel A. Liquin
+4. John Cameron B. Quiamco
+5. Zandrah Nathalie L.Vadil
 
 Instructions on how to run the project:
 
