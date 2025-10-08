@@ -99,8 +99,8 @@ View the scheduled appointments in the table
 A success dialog shows number of appointments created
 Click "Show Stats" to view performance metrics:
 
-Time Complexity: Execution time and performance analysis
-Space Complexity: Memory usage and data structure sizes
+• Time Complexity: Execution time and performance analysis
+• Space Complexity: Memory usage and data structure sizes
 
 Schedule Options:
 
