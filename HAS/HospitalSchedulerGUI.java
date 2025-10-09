@@ -596,40 +596,32 @@ public class HospitalSchedulerGUI extends JFrame {
     private void showStatsMenu(int numPatients, int numDoctors, int totalSlots, 
                               int appointmentsCreated, long durationNano, 
                               double durationMs, double durationSec) {
-        Object[] statsOptions = {"Time Complexity", "Space Complexity"};
-        int statsChoice = JOptionPane.showOptionDialog(
-            this,
-            "Select the type of statistics to view:",
-            "Performance Statistics",
-            JOptionPane.DEFAULT_OPTION,
-            JOptionPane.QUESTION_MESSAGE,
-            null,
-            statsOptions,
-            statsOptions[0]
-        );
-
-        if (statsChoice == 0) {
-            // Show Time Complexity Stats
-            String timeStats = buildTimeComplexityStats(numPatients, numDoctors, totalSlots, 
-                                                        appointmentsCreated, durationNano, 
-                                                        durationMs, durationSec);
-            JOptionPane.showMessageDialog(this, timeStats, "Time Complexity Analysis", 
-                                         JOptionPane.INFORMATION_MESSAGE);
-        } else if (statsChoice == 1) {
-            // Show Space Complexity Stats
-            String spaceStats = buildSpaceComplexityStats(numPatients, numDoctors, 
-                                                          appointmentsCreated);
-            JOptionPane.showMessageDialog(this, spaceStats, "Space Complexity Analysis", 
-                                         JOptionPane.INFORMATION_MESSAGE);
-        }
+        String combinedStats = buildCombinedStats(numPatients, numDoctors, totalSlots, 
+                                                   appointmentsCreated, durationNano, 
+                                                   durationMs, durationSec);
+        
+        // Display in dialog
+        JOptionPane.showMessageDialog(this, combinedStats, "Performance Statistics", 
+                                     JOptionPane.INFORMATION_MESSAGE);
+        
+        // Display in console
+        System.out.println(combinedStats);
     }
 
-    private String buildTimeComplexityStats(int numPatients, int numDoctors, int totalSlots, 
-                                           int appointmentsCreated, long durationNano, 
-                                           double durationMs, double durationSec) {
+    private String buildCombinedStats(int numPatients, int numDoctors, int totalSlots, 
+                                     int appointmentsCreated, long durationNano, 
+                                     double durationMs, double durationSec) {
+        Runtime runtime = Runtime.getRuntime();
+        long usedMemory = (runtime.totalMemory() - runtime.freeMemory()) / 1024; // KB
+        
         StringBuilder sb = new StringBuilder();
+        sb.append("========================================\n");
+        sb.append("COMPLETE PERFORMANCE ANALYSIS\n");
+        sb.append("========================================\n\n");
+        
+        // TIME COMPLEXITY SECTION
         sb.append("TIME COMPLEXITY ANALYSIS\n");
-        sb.append("=====================================\n\n");
+        sb.append("-------------------------------------\n");
         sb.append("INPUT SIZE:\n");
         sb.append("  Patients: ").append(numPatients).append("\n");
         sb.append("  Doctors: ").append(numDoctors).append("\n");
@@ -643,18 +635,11 @@ public class HospitalSchedulerGUI extends JFrame {
         sb.append("  Time per patient: ").append(String.format("%.6f", durationMs / numPatients)).append(" ms\n");
         sb.append("  Time per operation (n*m): ").append(String.format("%.6f", durationMs / (numPatients * numDoctors))).append(" ms\n");
         sb.append("\nCOMPLEXITY: O(n × m)\n");
-        sb.append("  where n = patients, m = doctors\n");
-        return sb.toString();
-    }
-
-    private String buildSpaceComplexityStats(int numPatients, int numDoctors, 
-                                            int appointmentsCreated) {
-        Runtime runtime = Runtime.getRuntime();
-        long usedMemory = (runtime.totalMemory() - runtime.freeMemory()) / 1024; // KB
+        sb.append("  where n = patients, m = doctors\n\n");
         
-        StringBuilder sb = new StringBuilder();
+        // SPACE COMPLEXITY SECTION
         sb.append("SPACE COMPLEXITY ANALYSIS\n");
-        sb.append("=====================================\n\n");
+        sb.append("-------------------------------------\n");
         sb.append("DATA STRUCTURES:\n");
         sb.append("  Patient List: ").append(numPatients).append(" objects\n");
         sb.append("  Doctor List: ").append(numDoctors).append(" objects\n");
@@ -669,6 +654,8 @@ public class HospitalSchedulerGUI extends JFrame {
         sb.append("  Appointment storage: O(k) = ").append(appointmentsCreated).append("\n");
         sb.append("\nCOMPLEXITY: O(n + m + k)\n");
         sb.append("  where n = patients, m = doctors, k = appointments\n");
+        sb.append("========================================\n");
+        
         return sb.toString();
     }
     
