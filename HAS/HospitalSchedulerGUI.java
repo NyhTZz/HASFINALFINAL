@@ -540,7 +540,6 @@ public class HospitalSchedulerGUI extends JFrame {
         double durationMs = durationNano / 1_000_000.0;
         double durationSec = durationNano / 1_000_000_000.0;
 
-        // Keep console output for debugging
         System.out.println("========================================");
         System.out.println("SCHEDULING PERFORMANCE ANALYSIS");
         System.out.println("========================================");
@@ -572,7 +571,6 @@ public class HospitalSchedulerGUI extends JFrame {
                 a.endTime.format(formatter), a.patient.estimatedDuration + " min"});
         }
 
-        // Create custom dialog with "Show Stats" option
         String message = currentAppointments.size() + " appointments scheduled!";
         Object[] options = {"OK", "Show Stats"};
         int choice = JOptionPane.showOptionDialog(
@@ -586,7 +584,6 @@ public class HospitalSchedulerGUI extends JFrame {
             options[0]
         );
 
-        // If "Show Stats" was clicked (index 1)
         if (choice == 1) {
             showStatsMenu(numPatients, numDoctors, totalSlots, currentAppointments.size(), 
                          durationNano, durationMs, durationSec);
@@ -600,12 +597,10 @@ public class HospitalSchedulerGUI extends JFrame {
                                                    appointmentsCreated, durationNano, 
                                                    durationMs, durationSec);
         
-        // Display in dialog
+        System.out.println(combinedStats);
+        
         JOptionPane.showMessageDialog(this, combinedStats, "Performance Statistics", 
                                      JOptionPane.INFORMATION_MESSAGE);
-        
-        // Display in console
-        System.out.println(combinedStats);
     }
 
     private String buildCombinedStats(int numPatients, int numDoctors, int totalSlots, 
@@ -619,7 +614,7 @@ public class HospitalSchedulerGUI extends JFrame {
         sb.append("COMPLETE PERFORMANCE ANALYSIS\n");
         sb.append("========================================\n\n");
         
-        // TIME COMPLEXITY SECTION
+        //time omplexicty
         sb.append("TIME COMPLEXITY ANALYSIS\n");
         sb.append("-------------------------------------\n");
         sb.append("INPUT SIZE:\n");
@@ -637,7 +632,7 @@ public class HospitalSchedulerGUI extends JFrame {
         sb.append("\nCOMPLEXITY: O(n × m)\n");
         sb.append("  where n = patients, m = doctors\n\n");
         
-        // SPACE COMPLEXITY SECTION
+        //space compexity
         sb.append("SPACE COMPLEXITY ANALYSIS\n");
         sb.append("-------------------------------------\n");
         sb.append("DATA STRUCTURES:\n");
